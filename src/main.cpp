@@ -5,7 +5,6 @@
 int main()
 {
     glfwInit();
-
     GLFWwindow *window = glfwCreateWindow(800, 600, "Particlezzz", nullptr, nullptr);
     glfwMakeContextCurrent(window);
     glViewport(0, 0, 800, 600);
