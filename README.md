@@ -42,6 +42,10 @@ To install and run the Ballzzz project, follow these steps:
 
 ## Usage
 Use it however you want
+- space removes all balls
+- left click off of ball adds ball
+- left click on ball removes that ball
+- r adds one hundred small balls (might be laggy)
 
 ## Video presentation
 ![Video](ballzzz.gif)
