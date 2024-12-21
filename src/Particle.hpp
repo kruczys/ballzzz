@@ -2,9 +2,9 @@ class Particle
 {
     double y_speed;
     double x_speed;
+    double size;
     double x_pos;
     double y_pos;
-    double size;
 
 public:
     Particle(double yspeed, double xspeed, int size, double x_pos, double y_pos) : y_speed(yspeed), x_speed(xspeed), size(size), x_pos(x_pos), y_pos(y_pos) {}
