@@ -41,24 +41,24 @@ void Simulation::simulate()
         }
 
         // collision with walls
-        if (particle.get_y_pos() > this->y_window - 12)
+        if (particle.get_y_pos() > this->y_window - particle.get_size())
         {
-            particle.set_y_pos(this->y_window - 12);
+            particle.set_y_pos(this->y_window - particle.get_size());
             particle.set_y_speed(-particle.get_y_speed() * 0.9);
         }
-        if (particle.get_y_pos() < 12)
+        if (particle.get_y_pos() < particle.get_size())
         {
-            particle.set_y_pos(12);
+            particle.set_y_pos(particle.get_size());
             particle.set_y_speed(-particle.get_y_speed() * 0.9);
         }
-        if (particle.get_x_pos() > this->x_window - 12)
+        if (particle.get_x_pos() > this->x_window - particle.get_size())
         {
-            particle.set_x_pos(this->x_window - 12);
+            particle.set_x_pos(this->x_window - particle.get_size());
             particle.set_x_speed(-particle.get_x_speed() * 0.9);
         }
-        if (particle.get_x_pos() < 12)
+        if (particle.get_x_pos() < particle.get_size())
         {
-            particle.set_x_pos(12);
+            particle.set_x_pos(particle.get_size());
             particle.set_x_speed(-particle.get_x_speed() * 0.9);
         }
 
@@ -87,4 +87,23 @@ void Simulation::on_click(double x_mouse, double y_mouse)
     srand(std::time(0));
     double randomized = 3 * ((double)rand() / RAND_MAX) * 2.0 - 1.0;
     particles.push_back(Particle(0, randomized, 10, x_mouse, y_mouse));
+}
+
+void Simulation::delete_all_particles()
+{
+    for (size_t i = 0; i < particles.size(); i++)
+    {
+        particles.erase(particles.begin() + i);
+    }
+}
+
+void Simulation::add_thousand_small_particles()
+{
+    for (size_t i = 0; i < 100; i++)
+    {
+        for (size_t j = 0; j < 10; j++)
+        {
+            particles.push_back(Particle(0, 0, 2, 3 * i, 3 * j));
+        }
+    }
 }

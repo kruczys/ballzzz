@@ -15,4 +15,6 @@ public:
     void simulate();
     double count_gravity_acceleration_rate_per_second() const;
     void on_click(double x_mouse, double y_mouse);
+    void delete_all_particles();
+    void add_thousand_small_particles();
 };
