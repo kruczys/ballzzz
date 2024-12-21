@@ -52,7 +52,7 @@ void window_pos_callback(GLFWwindow *window, int xpos, int ypos)
 int main()
 {
     glfwInit();
-    GLFWwindow *window = glfwCreateWindow(WINDOW_X, WINDOW_Y, "Particlezzz", nullptr, nullptr);
+    GLFWwindow *window = glfwCreateWindow(WINDOW_X, WINDOW_Y, "Balzzz", nullptr, nullptr);
     glfwSetMouseButtonCallback(window, mouse_button_callback);
     glfwSetKeyCallback(window, key_callback);
     glfwSetWindowPosCallback(window, window_pos_callback);
