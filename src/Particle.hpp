@@ -14,9 +14,9 @@ public:
     void set_y_pos(double y);
     void set_x_speed(double x);
     void set_y_speed(double y);
-    double get_x_pos();
-    double get_y_pos();
-    double get_x_speed();
-    double get_y_speed();
-    double get_size();
+    double get_x_pos() const;
+    double get_y_pos() const;
+    double get_x_speed() const;
+    double get_y_speed() const;
+    double get_size() const;
 };
