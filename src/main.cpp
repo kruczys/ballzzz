@@ -35,6 +35,24 @@ void r_key_callback(GLFWwindow *window, int key, int scancode, int action, int m
     }
 }
 
+void window_pos_callback(GLFWwindow *window, int xpos, int ypos)
+{
+    static double last_x = xpos;
+    static double last_y = ypos;
+
+    double dx = (xpos - last_x) * 0.2;
+    double dy = (ypos - last_y) * 0.1;
+
+    for (auto &particle : simulation.particles)
+    {
+        particle.set_x_speed(particle.get_x_speed() + dx);
+        particle.set_y_speed(particle.get_y_speed() + dy);
+    }
+
+    last_x = xpos;
+    last_y = ypos;
+}
+
 int main()
 {
     glfwInit();
@@ -42,6 +60,7 @@ int main()
     glfwSetMouseButtonCallback(window, mouse_button_callback);
     glfwSetKeyCallback(window, space_callback);
     glfwSetKeyCallback(window, r_key_callback);
+    glfwSetWindowPosCallback(window, window_pos_callback);
     glfwMakeContextCurrent(window);
     glViewport(0, 0, WINDOW_X, WINDOW_Y);
 
