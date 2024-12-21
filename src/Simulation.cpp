@@ -9,9 +9,9 @@ void Simulation::simulate()
     {
         particle.set_x_pos(particle.get_x_pos() + particle.get_x_speed());
         particle.set_y_pos(particle.get_y_pos() + particle.get_y_speed());
-        // Air resistance
+
         particle.set_x_speed(particle.get_x_speed() * 0.999);
-        // If particle hit something change speed to negatives and set position at border
+
         if (particle.get_y_pos() > this->y_window - 12)
         {
             particle.set_y_pos(this->y_window - 12);
@@ -32,7 +32,7 @@ void Simulation::simulate()
             particle.set_x_pos(12);
             particle.set_x_speed(-particle.get_x_speed() * 0.9);
         }
-        // gravitational pull
+
         particle.accelerate(0, -this->count_gravity_acceleration_rate_per_second());
     }
 }
