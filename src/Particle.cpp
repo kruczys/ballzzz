@@ -50,3 +50,13 @@ void Particle::set_y_speed(double y)
 {
     this->y_speed = y;
 }
+
+bool Particle::operator==(const Particle &other) const
+{
+    return this->get_x_pos() == other.get_x_pos() && this->get_y_pos() == other.get_y_pos();
+}
+
+bool Particle::operator!=(const Particle &other) const
+{
+    return !(*this == other);
+}
