@@ -41,24 +41,24 @@ void Simulation::simulate()
         }
 
         // collision with walls
-        if (particle.get_y_pos() > this->y_window - particle.get_size())
+        if (particle.get_y_pos() > this->y_window - particle.get_size() + 2)
         {
-            particle.set_y_pos(this->y_window - particle.get_size());
+            particle.set_y_pos(this->y_window - particle.get_size() + 2);
             particle.set_y_speed(-particle.get_y_speed() * 0.9);
         }
-        if (particle.get_y_pos() < particle.get_size())
+        if (particle.get_y_pos() < particle.get_size() + 2)
         {
-            particle.set_y_pos(particle.get_size());
+            particle.set_y_pos(particle.get_size() + 2);
             particle.set_y_speed(-particle.get_y_speed() * 0.9);
         }
-        if (particle.get_x_pos() > this->x_window - particle.get_size())
+        if (particle.get_x_pos() > this->x_window - particle.get_size() + 2)
         {
-            particle.set_x_pos(this->x_window - particle.get_size());
+            particle.set_x_pos(this->x_window - particle.get_size() + 2);
             particle.set_x_speed(-particle.get_x_speed() * 0.9);
         }
-        if (particle.get_x_pos() < particle.get_size())
+        if (particle.get_x_pos() < particle.get_size() + 2)
         {
-            particle.set_x_pos(particle.get_size());
+            particle.set_x_pos(particle.get_size() + 2);
             particle.set_x_speed(-particle.get_x_speed() * 0.9);
         }
 
@@ -91,10 +91,7 @@ void Simulation::on_click(double x_mouse, double y_mouse)
 
 void Simulation::delete_all_particles()
 {
-    for (size_t i = 0; i < particles.size(); i++)
-    {
-        particles.erase(particles.begin() + i);
-    }
+    particles.clear();
 }
 
 void Simulation::add_thousand_small_particles()

@@ -19,17 +19,13 @@ void mouse_button_callback(GLFWwindow *window, int button, int action, int mods)
     }
 }
 
-void space_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
+void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
     if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
     {
         simulation.delete_all_particles();
     }
-}
-
-void r_key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
-{
-    if (key == GLFW_KEY_R && action == GLFW_PRESS)
+    else if (key == GLFW_KEY_R && action == GLFW_PRESS)
     {
         simulation.add_thousand_small_particles();
     }
@@ -58,8 +54,7 @@ int main()
     glfwInit();
     GLFWwindow *window = glfwCreateWindow(WINDOW_X, WINDOW_Y, "Particlezzz", nullptr, nullptr);
     glfwSetMouseButtonCallback(window, mouse_button_callback);
-    glfwSetKeyCallback(window, space_callback);
-    glfwSetKeyCallback(window, r_key_callback);
+    glfwSetKeyCallback(window, key_callback);
     glfwSetWindowPosCallback(window, window_pos_callback);
     glfwMakeContextCurrent(window);
     glViewport(0, 0, WINDOW_X, WINDOW_Y);
