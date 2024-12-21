@@ -5,14 +5,14 @@ class Simulation
 {
     double fps;
     double gravity_rate;
+    int x_window;
+    int y_window;
     std::vector<Particle> particles;
 
 public:
     Simulation(double fps, double gravity_rate) : fps(fps), gravity_rate(gravity_rate), particles() {}
-    std::vector<Particle> get_particles();
 
     void simulate();
-    void add_particle();
-    void delete_particle(Particle &particle);
-    double count_gravity_acceleration_rate();
+    double count_gravity_acceleration_rate_per_second();
+    void on_click(double x_mouse, double y_mouse);
 };

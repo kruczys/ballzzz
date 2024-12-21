@@ -35,3 +35,18 @@ double Particle::get_y_pos()
 {
     return this->y_pos;
 }
+
+double Particle::get_size()
+{
+    return this->size;
+}
+
+void Particle::set_x_speed(double x)
+{
+    this->x_speed = x;
+}
+
+void Particle::set_y_speed(double y)
+{
+    this->y_speed = y;
+}
