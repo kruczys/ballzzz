@@ -1,7 +1,7 @@
-# Balzzz Project
+# Ballzzz Project
 
 ## Description
-Balzzz is a particle simulation project that bounces balls.
+Ballzzz is a particle simulation project that bounces balls.
 
 ## Features
 - Balls bounce off each other
@@ -17,7 +17,7 @@ Balzzz is a particle simulation project that bounces balls.
 - GLEW
 
 ## Installation
-To install and run the Balzzz project, follow these steps:
+To install and run the Ballzzz project, follow these steps:
 
 1. Clone the repository:
     ```bash
