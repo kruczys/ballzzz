@@ -7,12 +7,13 @@
 void Simulation::simulate()
 {
     double gravity_rate_ps = this->count_gravity_acceleration_rate_per_second();
-    for (auto &particle : this->particles)
+    for (size_t i = 0; i < particles.size(); i++)
     {
-        double x_speed = particle.get_x_speed();
-        double y_speed = particle.get_y_speed();
+        auto &particle = particles[i];
         double x_pos = particle.get_x_pos();
         double y_pos = particle.get_y_pos();
+        double x_speed = particle.get_x_speed();
+        double y_speed = particle.get_y_speed();
         double size = particle.get_size();
 
         // Movement
@@ -23,33 +24,37 @@ void Simulation::simulate()
         particle.set_x_speed(x_speed * 0.999);
 
         // collision with other particles
-        for (auto &other_particle : this->particles)
+        for (size_t j = i + 1; j < particles.size(); j++)
         {
-            double x_pos_other = other_particle.get_x_pos();
-            double y_pos_other = other_particle.get_y_pos();
-            double x_speed_other = other_particle.get_x_speed();
-            double y_speed_other = other_particle.get_y_speed();
-            double size_other = other_particle.get_size();
+            auto &other_particle = particles[j];
 
-            if (particle != other_particle)
+            double dist = distance(
+                particle.get_x_pos(),
+                particle.get_y_pos(),
+                other_particle.get_x_pos(),
+                other_particle.get_y_pos());
+
+            double min_dist = (particle.get_size() + other_particle.get_size()) / 2;
+
+            if (dist < min_dist && dist > 0)
             {
-                if (distance(x_pos, y_pos, x_pos_other, y_pos_other) < (size + size_other) / 2)
-                {
-                    double dx = x_pos_other - x_pos;
-                    double dy = y_pos_other - y_pos;
+                double dx = (other_particle.get_x_pos() - particle.get_x_pos()) / dist;
+                double dy = (other_particle.get_y_pos() - particle.get_y_pos()) / dist;
 
-                    double dist = std::sqrt(dx * dx + dy * dy);
-                    dx /= dist;
-                    dy /= dist;
+                double pushForce = (min_dist - dist) * 0.5;
 
-                    double v1 = x_speed * dx + y_speed_other * dy;
-                    double v2 = x_speed_other * dx + y_speed * dy;
+                particle.set_x_pos(particle.get_x_pos() - dx * pushForce);
+                particle.set_y_pos(particle.get_y_pos() - dy * pushForce);
+                other_particle.set_x_pos(other_particle.get_x_pos() + dx * pushForce);
+                other_particle.set_y_pos(other_particle.get_y_pos() + dy * pushForce);
 
-                    particle.set_x_speed(x_speed + (v2 - v1) * dx);
-                    particle.set_y_speed(y_speed + (v2 - v1) * dy);
-                    other_particle.set_x_speed(x_speed_other + (v1 - v2) * dx);
-                    other_particle.set_y_speed(y_speed_other + (v1 - v2) * dy);
-                }
+                double nx = particle.get_x_speed();
+                double ny = particle.get_y_speed();
+
+                particle.set_x_speed(other_particle.get_x_speed());
+                particle.set_y_speed(other_particle.get_y_speed());
+                other_particle.set_x_speed(nx);
+                other_particle.set_y_speed(ny);
             }
         }
 
